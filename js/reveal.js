@@ -3489,7 +3489,8 @@
 			paused: isPaused(),
 			overview: isOverview(),
 			total: getTotalSlides(),
-			current: getSlidePastCount() + 1
+			current: getSlidePastCount() + 1,
+			last: Reveal.isLastSlide()
 		};
 
 	}
@@ -4738,6 +4739,10 @@
 		// Registers a new shortcut to include in the help overlay
 		registerKeyboardShortcut: function( key, value ) {
 			keyboardShortcuts[key] = value;
+		},
+
+		enterFullscreen: function() {
+			enterFullscreen();
 		}
 	};
 
