@@ -2591,7 +2591,7 @@
 		if( config.slideNumber && dom.slideNumber ) {
 
 			var value = [];
-			var format = 'h.v';
+			var format = 'c';
 
 			// Check if a custom number format is available
 			if( typeof config.slideNumber === 'string' ) {
