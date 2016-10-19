@@ -3297,7 +3297,9 @@
 			indexv: indices.v,
 			indexf: indices.f,
 			paused: isPaused(),
-			overview: isOverview()
+			overview: isOverview(),
+			total: getTotalSlides(),
+			current: getSlidePastCount() + 1
 		};
 
 	}
