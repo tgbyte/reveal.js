@@ -949,6 +949,10 @@
 			document.removeEventListener( 'mousewheel', onDocumentMouseScroll, false );
 		}
 
+		document.addEventListener( 'webkitfullscreenchange', onFullscreenChange, false );
+		document.addEventListener( 'mozfullscreenchange', onFullscreenChange, false );
+		document.addEventListener( 'fullscreenchange', onFullscreenChange, false );
+
 		// Rolling 3D links
 		if( config.rollingLinks ) {
 			enableRollingLinks();
@@ -1401,7 +1405,7 @@
 		// If we're in an iframe, post each reveal.js event to the
 		// parent window. Used by the notes plugin
 		if( config.postMessageEvents && window.parent !== window.self ) {
-			window.parent.postMessage( JSON.stringify({ namespace: 'reveal', eventName: type, state: getState() }), '*' );
+			window.parent.postMessage( JSON.stringify({ namespace: 'reveal', eventName: type, state: getState(), args: args }), '*' );
 		}
 
 	}
@@ -4400,6 +4404,15 @@
 			pauseAutoSlide();
 		}
 
+	}
+
+	function onFullscreenChange( event ) {
+		var fullscreen = !!document["fullscreenElement"] || !!document["msFullscreenElement"]
+			|| !!document["webkitIsFullScreen"] || !!document["mozFullScreen"];
+
+		dispatchEvent( 'fullscreen', {
+			'fullscreen': fullscreen
+		} );
 	}
 
 
